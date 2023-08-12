@@ -1,0 +1,52 @@
+name: user
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 0.0.1+1
+
+environment:
+  sdk: '>=2.19.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^2.15.0
+  firebase_auth: ^4.7.2
+  firebase_database: ^10.2.4
+  fluttertoast: ^8.2.2
+
+  english_words: ^4.0.0
+  provider: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets: 
+  - images/car_android.png
+  - images/car_ios.png
+  - images/desticon.png
+  - images/desticon1.png
+  - images/logo.png
+  - images/logo1.png
+  - images/pickicon.png
+  - images/posimarker.png
+  - images/redmarker.png
+  - images/taxi.png
+  - images/user_icon.png
+
+  fonts:
+    - family: Signatra
+      fonts: 
+        - asset: fonts/Signatra.ttf
+    - family: Brand-Regular
+      fonts:
+        - asset: fonts/bolt-regular.ttf
+    - family: Brand Bold
+      fonts: 
+        - asset: fonts/bolt-semibold.ttf
