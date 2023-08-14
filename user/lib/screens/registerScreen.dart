@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:user/main.dart';
 import 'package:user/screens/home.dart';
 import 'package:user/screens/loginScreen.dart';
+import 'package:user/widgets/progressDialog.dart';
 
 class registerScreen extends StatelessWidget {
   static const String idScreen = "register";
@@ -180,11 +181,20 @@ class registerScreen extends StatelessWidget {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   void registerNewUser(BuildContext context) async {
+    showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return ProgressDialog(
+              message: "Authenticating, please wait...",
+            );
+          });
     final User? firebaseUser = (await _firebaseAuth
             .createUserWithEmailAndPassword(
                 email: emailTextEditingController.text,
                 password: passwordTextEditingController.text)
             .catchError((errMsg) {
+              Navigator.pop(context);
       displayToastMessage("Error: " + errMsg.toString(), context);
     }))
         .user;
@@ -202,32 +212,10 @@ class registerScreen extends StatelessWidget {
       Navigator.pushNamedAndRemoveUntil(
           context, MyHomePage.idScreen, (route) => false);
     } else {
+      Navigator.pop(context);
       displayToastMessage("New user account has not been created", context);
     }
   }
-  //   Future<void> registerNewUser(BuildContext context) async {
-  //   try {
-  //     final UserCredential userCredential = await _firebaseAuth
-  //         .createUserWithEmailAndPassword(
-  //       email: emailTextEditingController.text,
-  //       password: passwordTextEditingController.text,
-  //     );
-
-  //     final User? user = userCredential.user;
-
-  //     if (user != null) {
-  //       // New user account created successfully
-  //     } else {
-  //       displayToastMessage("New user account has not been created", context);
-  //     }
-  //   } catch (error) {
-  //     displayToastMessage("Error: " + error.toString(), context);
-  //   }
-  // }
-
-  // void displayToastMessage(String message, BuildContext context) {
-  //   // Implement your toast message display logic here
-  // }
 }
 
 displayToastMessage(String message, BuildContext context) {
