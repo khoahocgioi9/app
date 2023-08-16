@@ -13,7 +13,6 @@ void main() async {
 
 DatabaseReference usersRef =
     FirebaseDatabase.instance.reference().child("users");
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: loginScreen.idScreen,
+      initialRoute: MyHomePage.idScreen,
       routes: {
         registerScreen.idScreen: (context) => registerScreen(),
         loginScreen.idScreen: (context) => loginScreen(),
