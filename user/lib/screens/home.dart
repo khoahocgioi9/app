@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:user/Assistants/assistantMethods.dart';
 import 'package:user/widgets/divider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -37,6 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    String address = await AssistantMethods.searchCoordinateAddress(position);
+    print("This is your Address :: " + address);
   }
 
   static final CameraPosition _kGooglePlex = CameraPosition(
